@@ -12,8 +12,8 @@ libraryDependencies ++= Seq(
   "org.scala-lang" % "scala-reflect" % "2.11.2",
   "org.seleniumhq.selenium" % "selenium-htmlunit-driver" % "2.42.2",
   "org.jsoup" % "jsoup" % "1.7.3",
-  "us.codecraft" % "xsoup" % "0.3.0"
-)
+  "us.codecraft" % "xsoup" % "0.3.0",
+  "org.scalaz" %% "scalaz-core" % "7.1.1")
 
 unmanagedResourceDirectories in Test <+= baseDirectory(_ / "target/web/public/test")
 

@@ -3,10 +3,13 @@ package controllers
 import play.api._
 import play.api.mvc._
 
-object Application extends Controller {
+object Application extends Controller with Application {
+}
 
-  def index = Action {
-    Ok(views.html.index("Your new application is ready."))
+trait Application {
+  this: Controller =>
+
+  def index() = Action {
+    Ok("ok")
   }
-
 }
