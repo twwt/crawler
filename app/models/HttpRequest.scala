@@ -54,7 +54,7 @@ class HttpRequest(config: Config) {
     }
   }
 
-  def scrapeLinks(pagesXpath: String)(response: Response): IndexedSeq[String] = {
-    Jsoup.parse(response.body).links(pagesXpath)
+  def scrapeLinks(pagesXpath: String)(response: Response): List[String] = {
+    Jsoup.parse(response.body).links(pagesXpath).toList
   }
 }

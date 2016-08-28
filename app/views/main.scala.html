@@ -1,4 +1,4 @@
-@(title: String)(content: Html)
+@(title: String, form1: Form[models.Config])(implicit messages: Messages)
 
 <!DOCTYPE html>
 
@@ -10,6 +10,30 @@
         <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
     </head>
     <body>
-        @content
+        @title
+        @helper.form(action = routes.Application.submit) {
+            @(helper.inputText(
+                field = form1("url"),
+                '_label -> "URL"
+            ))
+            @(helper.inputText(
+                field = form1("UA"),
+                '_label -> "UA"
+            ))
+            @(helper.inputText(
+                field = form1("timeoutMs"),
+                '_label -> "timeoutMs"
+            ))
+            @(helper.inputText(
+                field = form1("referrer"),
+                '_label -> "referrer"
+            ))
+            @(helper.inputText(
+                field = form1("sleepTimeMs"),
+                '_label -> "sleepTimeMs"
+            ))
+            <button>登録</button>
+        }
+    <p><a href="/">[HOME]</a></p>
     </body>
 </html>
