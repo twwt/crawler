@@ -36,7 +36,7 @@ class HttpRequest(config: Config) {
       for {
         size <- Range(0, elements.size())
       } yield {
-        elements.get(size).attr("href")
+        elements.get(size).absUrl("href")
       }
     }
   }
@@ -47,14 +47,14 @@ class HttpRequest(config: Config) {
       .map(validation)
   }
 
-  def validation(response: Response): \/[StatusCodeErrorMessage, Response] = {
+  private def validation(response: Response): \/[StatusCodeErrorMessage, Response] = {
     response.statusCode() match {
       case statusCode if (statusCode >= 200 && statusCode < 300 || statusCode == 304) => \/-(response)
       case statusCode => -\/(s"$statusCode : StatusCodeError!")
     }
   }
 
-  def scrapeLinks(pagesXpath: String)(response: Response): List[String] = {
-    Jsoup.parse(response.body).links(pagesXpath).toList
+  def scrapeLinks(pagesXpath: String, absUrl: String)(response: Response): List[String] = {
+    Jsoup.parseBodyFragment(response.body, absUrl).links(pagesXpath).toList
   }
 }

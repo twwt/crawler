@@ -9,6 +9,7 @@ scalaVersion := "2.11.7"
 libraryDependencies ++= Seq(
   jdbc, cache, ws,
   specs2 % Test,
+  "org.scalatest" % "scalatest_2.11" % "2.2.1" % "test",
   "org.scala-lang" % "scala-reflect" % "2.11.2",
   "org.seleniumhq.selenium" % "selenium-htmlunit-driver" % "2.42.2",
   "org.jsoup" % "jsoup" % "1.7.3",
