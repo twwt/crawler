@@ -18,9 +18,6 @@ import java.nio.file.{Files, Paths}
 import java.nio.file.StandardCopyOption.REPLACE_EXISTING
 import scala.collection.JavaConversions._
 import scala.util.Try
-
-//import collection.JavaConversions._
-//import collection.mutable._
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 import scalaz._
@@ -114,14 +111,7 @@ trait ApplicationTrait {
             \/-(Try(file.renameTo(new File(s"faceImages/${mills}_|-|_${s.toInt}.$extension"))).getOrElse(false))
         }
       }
-      rename(fileName, file).fold(e => Ok(views.html.index(List(e.message))), b => {
-//        val dir = Paths.get("faceImage/")
-//        Files.createDirectory(dir)
-//        Files.copy(new FileInputStream(file), dir, REPLACE_EXISTING)
-//        val dir = Paths.get("html")
-//        Files.copy(dir.resolve(), file, REPLACE_EXISTING)
-        Ok(views.html.index(List(b.toString)))
-      })
+      rename(fileName, file).fold(e => Ok(views.html.index(List(e.message))), b => Ok(views.html.index(List(b.toString))))
     }.getOrElse {
       BadRequest(views.html.index(List("fail")))
     }
@@ -144,12 +134,7 @@ trait ApplicationTrait {
       },
       configs => {
         foldCrawl(configs)
-        //        val httpRequest = new HttpRequest(config)
-        //        val scrape = HttpRequest.scrapeLinks(config.xPath, config.baseUrl)(_)
-        //        httpRequest.get.rightMap(scrape) match {
-        //          case -\/(e) => Future(BadRequest(views.html.index(List(e.toString()))))
         Future(Ok(views.html.index(List("a"))))
-        //        }
       }
     )
   }
