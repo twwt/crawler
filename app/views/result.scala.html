@@ -1,0 +1,18 @@
+@(lefts: List[String], rights: List[String])
+
+<h2>Right</h2>
+<ul>
+    @for(right <- rights) {
+        <span>@right <span>,<br></span></span>
+    }
+</ul>
+
+<br>
+<br>
+
+<h2>Left</h2>
+<ul>
+    @for(left <- lefts) {
+        <span>@left <span>,<br></span></span>
+    }
+</ul>

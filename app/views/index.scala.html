@@ -1,3 +1,7 @@
-@(message: String)
+@(messages: List[String])
 
-@play20.welcome(message)
+<ul>
+@for(message <- messages) {
+    <span>@message<span>,<br></span></span>
+}
+</ul>
